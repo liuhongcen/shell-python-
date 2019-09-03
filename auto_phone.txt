@@ -1,0 +1,12 @@
+手机号查询脚本
+
+
+#!/bin/bash
+for i in `cat idcard.txt`
+do
+        if [ "$i" = "NULL" ];then
+                echo "NULL NULL" >> f.txt
+        else
+                ft=`opsctl query $i | awk -F "|" '{print $5,$6}' | grep -Ew [0-9]{11}`
+                echo $ft >> f.txt
+        fi
